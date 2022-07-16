@@ -1,0 +1,29 @@
+div.directions {
+  max-height: 139px;
+  max-width: 139px;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto;
+
+  .icon {
+    display: inline-block;
+    background-size: cover;
+  }
+
+  .icon-compass {
+    g {
+      fill: var(--ion-text-color);
+    }
+  }
+
+  .icon-wind {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    g {
+      fill: var(--ion-text-color);
+    }
+  }
+}

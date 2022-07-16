@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
+        path: 'configs',
+        loadChildren: () => import('../config/config.module').then(m => m.ConfigPageModule)
+      },
+      {
         path: '',
         redirectTo: '/pages/tempo',
         pathMatch: 'full'
