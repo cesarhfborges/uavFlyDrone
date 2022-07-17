@@ -1,9 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title slot="start">
-      <fa-icon [icon]="icons.drone"></fa-icon>
+    <ion-title>
+      <fa-icon [icon]="icons.drone"></fa-icon>&nbsp;UAV Fly Drone
     </ion-title>
-    <ion-title>UAV Fly Drone</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,6 +10,14 @@
 
   <ion-grid>
     <ion-row>
+
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-content>
+            <h1 class="ion-text-center">{{weather?.location?.name}}, {{weather?.location?.region}}, {{weather?.location?.country}}</h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
       <ion-col size="12">
         <ion-card>
@@ -25,9 +32,10 @@
           <ion-card-content class="justify-content-center align-items-center">
             <h2>Clima:</h2>
             <h1 class="ion-text-center">
-              <fa-icon [icon]="icons.sun" style="font-size: 49px;"></fa-icon>
-              <h1 class="ion-text-center">16º</h1>
-              <h1 class="ion-text-center">Ensolarado</h1>
+<!--              <fa-icon [icon]="icons.sun" style="font-size: 49px;"></fa-icon>-->
+              <img [src]="weather?.current?.condition?.icon" alt="">
+              <h1 class="ion-text-center">{{getTextCondition()}}</h1>
+              <h1 class="ion-text-center">{{weather?.current?.tempC ?? 0}}º</h1>
             </h1>
           </ion-card-content>
         </ion-card>
@@ -38,7 +46,7 @@
           <ion-card-content>
             <h2>Dir. vento:</h2>
             <h1 class="ion-text-center ion-padding-top">
-              <app-vento #vento></app-vento>
+              <app-vento [directions]="weather?.directions" #vento></app-vento>
             </h1>
 <!--            <ion-range min="0" max="360" (ionChange)="changeCompassDirection($event)"></ion-range>-->
 <!--            <ion-range min="0" max="360" (ionChange)="changeWindDirection($event)"></ion-range>-->
@@ -46,18 +54,27 @@
         </ion-card>
       </ion-col>
 
-      <ion-col size-xs="12" size="6" size-sm="6" size-md="4">
+<!--      <ion-col size-xs="12" size="6" size-sm="6" size-md="4">-->
+<!--        <ion-card>-->
+<!--          <ion-card-content>-->
+<!--            <h2>Sol:</h2>-->
+<!--            <h1 class="ion-text-center">-->
+<!--              <fa-icon [icon]="icons.up"></fa-icon>-->
+<!--              06:40-->
+<!--            </h1>-->
+<!--            <h1 class="ion-text-center">-->
+<!--              <fa-icon [icon]="icons.down"></fa-icon>-->
+<!--              17:56-->
+<!--            </h1>-->
+<!--          </ion-card-content>-->
+<!--        </ion-card>-->
+<!--      </ion-col>-->
+
+      <ion-col size="6">
         <ion-card>
           <ion-card-content>
-            <h2>Sol:</h2>
-            <h1 class="ion-text-center">
-              <fa-icon [icon]="icons.up"></fa-icon>
-              06:40
-            </h1>
-            <h1 class="ion-text-center">
-              <fa-icon [icon]="icons.down"></fa-icon>
-              17:56
-            </h1>
+            <h2>Sensação Ter.:</h2>
+            <h1 class="ion-text-center">{{weather?.current?.feelslikeC ?? 0}}º</h1>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -65,8 +82,17 @@
       <ion-col size="6">
         <ion-card>
           <ion-card-content>
-            <h2>Temperatura:</h2>
-            <h1 class="ion-text-center">16º</h1>
+            <h2>Humidade:</h2>
+            <h1 class="ion-text-center">{{weather?.current?.humidity ?? 0}}</h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-content>
+            <h2>Radiação UV:</h2>
+            <h1 class="ion-text-center">{{weather?.current?.uv ?? 0}}</h1>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -75,7 +101,7 @@
         <ion-card>
           <ion-card-content>
             <h2>Vento:</h2>
-            <h1 class="ion-text-center">11 km/h</h1>
+            <h1 class="ion-text-center">{{weather?.current?.windKph ?? 0}} km/h</h1>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -84,7 +110,7 @@
         <ion-card>
           <ion-card-content>
             <h2>Rajadas:</h2>
-            <h1 class="ion-text-center">24 km/h</h1>
+            <h1 class="ion-text-center">{{weather?.current?.windMph ?? 0}} km/h</h1>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -93,7 +119,7 @@
         <ion-card>
           <ion-card-content>
             <h2>Visibilidade:</h2>
-            <h1 class="ion-text-center">16 km/h</h1>
+            <h1 class="ion-text-center">{{weather?.current?.visKm ?? 0}} km/h</h1>
           </ion-card-content>
         </ion-card>
       </ion-col>

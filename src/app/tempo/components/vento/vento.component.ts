@@ -7,8 +7,10 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class VentoComponent implements OnInit {
 
-  @Input() compassDirection: number;
-  @Input() windDirection: number;
+  @Input() directions: {
+    compass: number;
+    wind: number;
+  };
 
   constructor() {
   }
@@ -17,15 +19,15 @@ export class VentoComponent implements OnInit {
   }
 
   getCompassDirection(): number {
-    if (this.compassDirection && this.compassDirection > 0 && this.compassDirection < 360) {
-      return this.compassDirection;
+    if (this.directions?.compass > 0 && this.directions?.compass < 360) {
+      return this.directions.compass;
     }
     return 0;
   }
 
   getWindDirection(): number {
-    if (this.windDirection && this.windDirection > 0 && this.windDirection < 360) {
-      return this.windDirection;
+    if (this.directions?.wind > 0 && this.directions?.wind < 360) {
+      return this.directions.wind;
     }
     return 0;
   }

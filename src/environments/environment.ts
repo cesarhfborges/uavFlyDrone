@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  wheaterKey: '9794fcc9d8a74d4ab73154012221607' // https://www.weatherapi.com/confirm.aspx?code=
 };
 
 /*
